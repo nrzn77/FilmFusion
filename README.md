@@ -1,5 +1,5 @@
 # FilmFusion
-A Movie Database for our RDBMS project (3-1)
+A Movie Database for our RDBMS Project (3-1)
 
 [Presentation](https://docs.google.com/presentation/d/1PR9PDq00JbG24Kl4k_O35w4SH4mWuAizegXzBiQoCec/edit?usp=sharing)
 
