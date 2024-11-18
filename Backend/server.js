@@ -94,5 +94,29 @@ app.get('/movies/:genreId', (req, res) => {
     });
 });
 
+
+// Middleware for parsing JSON request body
+app.use(express.json());
+
+app.post('/actors/add', (req, res) => {
+    const { actor } = req.body;
+    console.log(req.body)
+
+    if (!actor) {
+        return res.status(400).send('Actor name is required');
+    }
+
+    const query = `INSERT INTO person (person_name) VALUES (?)`;
+
+    db.query(query, [actor], (err, results) => {
+        if (err) {
+            console.error('Error adding actor:', err);
+            return res.status(500).send('Server Error');
+        }
+        res.status(201).json({ message: 'Actor added successfully', actorId: results.insertId });
+    });
+});
+
+
 // Start the server
 app.listen(process.env.APP_PORT, () => console.log('Server running on port ' + process.env.APP_PORT));

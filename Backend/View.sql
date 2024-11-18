@@ -1,8 +1,9 @@
-CREATE VIEW movie_details_view AS
+CREATE OR REPLACE VIEW movie_details_view AS
 SELECT 
     m.movie_id, 
     m.title, 
     m.budget, 
+    m.poster_url,
     m.release_date, 
     m.revenue, 
     m.runtime, 
@@ -16,7 +17,7 @@ SELECT
     p.person_name AS cast_member, 
     cast_tbl.character_name, 
     cast_tbl.cast_order,
-    crew.person_name AS crew_member, 
+    crew.person_name AS crew_member,  
     d.department_name, 
     crew_tbl.job
 FROM 
