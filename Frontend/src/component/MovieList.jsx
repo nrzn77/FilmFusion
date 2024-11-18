@@ -2,11 +2,13 @@ import React from "react";
 import "./MovieList.css"; 
 
 function MovieList({ movies }) {
+  console.log(movies)
   return (
     <div className="movie-list">
       {movies.map((movie) => (
         <div key={movie.movie_id} className="movie-card">
           <h2>{movie.title}</h2>
+          <img src={movie.poster_url} />
           <p>
             <strong>Budget:</strong> ${movie.budget}
           </p>

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');  // Replace require with import
 const cors = require('cors');
 const mysql = require('mysql2');
@@ -7,6 +8,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send("Welcome to FilmFusion!")
+})
+
+// API Endpoint to Fetch Data from the View
+app.get('/movies', (req, res) => {
+    const query = 'SELECT * FROM movie_details_view';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.message);
+            res.status(500).send('Error fetching movies data');
+            return;
+        }
+        res.json(results); // Send results as JSON
+    });
+});
 
 // Endpoint to fetch all genres
 app.get('/genres', (req, res) => {
@@ -21,12 +38,24 @@ app.get('/genres', (req, res) => {
     });
 });
 
+app.get('/actors', (req, res) => {
+    const query = `select * from person;`
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching actors:', err);
+            res.status(500).send('Server Error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
 // Endpoint to fetch full movie details based on genre ID
 app.get('/movies/:genreId', (req, res) => {
     const genreId = req.params.genreId;
 
     const query = `
-        SELECT m.movie_id, m.title, m.budget, m.release_date, m.revenue, m.runtime, m.votes_avg, m.votes_count,
+        SELECT m.movie_id, m.title, m.budget, m.poster_url, m.release_date, m.revenue, m.runtime, m.votes_avg, m.votes_count,
                GROUP_CONCAT(DISTINCT cnt.country_name SEPARATOR ', ') AS countries,
                GROUP_CONCAT(DISTINCT lng.language_name SEPARATOR ', ') AS languages,
                GROUP_CONCAT(DISTINCT g.genre_name SEPARATOR ', ') AS genres,
@@ -66,4 +95,4 @@ app.get('/movies/:genreId', (req, res) => {
 });
 
 // Start the server
-app.listen(3001, () => console.log('Server running on port 3001'));
+app.listen(process.env.APP_PORT, () => console.log('Server running on port ' + process.env.APP_PORT));
