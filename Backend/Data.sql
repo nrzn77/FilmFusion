@@ -254,3 +254,17 @@ INSERT INTO movie_crew (movie_id, person_id, department_id, job) VALUES
 (3, 3, 1, 'Director'), (4, 4, 1, 'Director'),
 (5, 5, 4, 'Producer'), (6, 6, 4, 'Producer'),
 (7, 7, 1, 'Director'), (8, 8, 1, 'Director');
+
+
+--adding another column for movie posters
+ALTER TABLE movie
+ADD COLUMN poster_url VARCHAR(255);
+
+UPDATE movie SET poster_url = 'https://image.tmdb.org/t/p/original/As0zX43h3w6kD2NS4uVHu9HKdEh.jpg' WHERE movie_id = 2
+UPDATE movie SET poster_url = 'https://image.tmdb.org/t/p/original/6EiRUJpuoeQPghrs3YNktfnqOVh.jpg' WHERE movie_id = 3
+UPDATE movie SET poster_url = 'https://image.tmdb.org/t/p/original/d6LbJZO8ruvXgOjjGRgjtdYpJS4.jpg' WHERE movie_id = 5
+UPDATE movie SET poster_url = 'https://image.tmdb.org/t/p/original/oU7Oq2kFAAlGqbU4VoAE36g4hoI.jpg' WHERE movie_id = 6
+
+UPDATE movie 
+SET poster_url = 'https://miro.medium.com/v2/format:webp/0*ZjYSm_q36J4KChdn' 
+WHERE movie_id IN (1, 4, 7, 8);

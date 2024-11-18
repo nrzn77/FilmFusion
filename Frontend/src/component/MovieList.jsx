@@ -1,5 +1,5 @@
 import React from "react";
-import "./MovieList.css"; // Make sure to create this CSS file for styling
+import "./MovieList.css"; 
 
 function MovieList({ movies }) {
   return (
