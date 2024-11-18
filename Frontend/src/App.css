@@ -16,6 +16,10 @@ body {
   margin: 0;
 }
 
+img{
+  max-width: 100%;
+}
+
 /* Container for the whole app */
 .container {
   width: 90%;

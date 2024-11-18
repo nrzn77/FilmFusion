@@ -55,7 +55,7 @@ app.get('/movies/:genreId', (req, res) => {
     const genreId = req.params.genreId;
 
     const query = `
-        SELECT m.movie_id, m.title, m.budget, m.release_date, m.revenue, m.runtime, m.votes_avg, m.votes_count,
+        SELECT m.movie_id, m.title, m.budget, m.poster_url, m.release_date, m.revenue, m.runtime, m.votes_avg, m.votes_count,
                GROUP_CONCAT(DISTINCT cnt.country_name SEPARATOR ', ') AS countries,
                GROUP_CONCAT(DISTINCT lng.language_name SEPARATOR ', ') AS languages,
                GROUP_CONCAT(DISTINCT g.genre_name SEPARATOR ', ') AS genres,
