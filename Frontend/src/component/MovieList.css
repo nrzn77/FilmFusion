@@ -1,0 +1,31 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.movie-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 400px;
+  background-color: #f9f9f9;
+}
+
+.movie-card h2 {
+  color: #333;
+}
+
+.movie-card p {
+  color: #141414;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
